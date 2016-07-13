@@ -14,6 +14,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import br.com.wspedalada.client.ICampeonatoFacade;
+import br.com.wspedalada.client.ITimeFacade;
+import br.com.wspedalada.utils.WSUtils;
 
 @Path("/wsServicesIntegration")
 public class ServicesIntegration {
@@ -21,16 +23,16 @@ public class ServicesIntegration {
 	@EJB
 	private ICampeonatoFacade icampeonatoFacade;
 
+	@EJB
+	private ITimeFacade iTimeFacade;
+
 	@POST
 	@Path(value = "/create")
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public String insertChampions(InputStream incomingData) {
 
-		JsonReader jsonReader = Json.createReader(incomingData);
-		JsonObject object = jsonReader.readObject();
-		jsonReader.close();
-		this.icampeonatoFacade.insertChampions(object);
+		this.icampeonatoFacade.insertChampions(WSUtils.convertStreamToJSON(incomingData));
 
 		return "hahah MANE";
 	}
@@ -39,7 +41,25 @@ public class ServicesIntegration {
 	@Path(value = "/getAllChampions")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public JsonObject getAllChampions() {
+
 		return this.icampeonatoFacade.getChampions("1");
+	}
+
+	@POST
+	@Path(value = "/createTeam")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public String insertTeam(InputStream incomingData) {
+
+		try {
+
+			this.iTimeFacade.createTeam(WSUtils.convertStreamToJSON(incomingData));
+			
+		} catch (Exception e) {
+
+			return e.getMessage();
+		}
+
+		return null;
 	}
 
 }

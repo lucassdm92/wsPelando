@@ -50,4 +50,15 @@ public class CampeonatoBusiness implements ICampeonatoBusiness {
 		return ob.build();
 	}
 
+	@Override
+	public JsonObject findByID(String codigo) {
+		CampeonatoDAO campeonatoDAO = new CampeonatoDAO(entityManager);
+		Campeonato campeonato =  campeonatoDAO.selectById(codigo);
+		
+		JsonObjectBuilder obj = Json.createObjectBuilder();
+		obj.add("Campeonato", Json.createObjectBuilder().add("Nome", campeonato.getNomeCampeonato()).add("Descricao", campeonato.getDescricaoCampeonato()));
+		
+		return obj.build();
+	}
+
 }

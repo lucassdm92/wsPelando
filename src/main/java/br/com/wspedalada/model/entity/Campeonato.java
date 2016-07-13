@@ -16,7 +16,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @NamedQueries({
-	@NamedQuery(name=Campeonato.FIND_ALL_CHAMPIONS, query="SELECT c FROM Campeonato c")
+	@NamedQuery(name=Campeonato.FIND_ALL_CHAMPIONS, query="SELECT c FROM Campeonato c"),
+	@NamedQuery(name=Campeonato.SELECT_BY_ID, query="SELECT c FROM Campeonato c WHERE c.idCampeonato=:idCampeonato")
 })
 @Entity
 @Table(name = "TBL_CAMPEONATO")
@@ -27,6 +28,7 @@ public class Campeonato implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	public  static final String FIND_ALL_CHAMPIONS ="Campeonato.selectAllChampionsDB";
+	public  static final String SELECT_BY_ID ="Campeonato.selectById";
 
 	@Id
 	@GeneratedValue

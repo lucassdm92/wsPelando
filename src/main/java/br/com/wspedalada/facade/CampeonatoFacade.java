@@ -38,7 +38,16 @@ public class CampeonatoFacade implements ICampeonatoFacade {
 	@Override
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 	public JsonObject getChampions(String codigo) {
-		return this.campeonatoBusiness.getAllChampions();
+		JsonObject jsonObject = null;
+		
+		if (codigo.isEmpty()) {
+			jsonObject = this.campeonatoBusiness.getAllChampions();
+		}else{
+			
+			jsonObject = this.campeonatoBusiness.findByID(codigo);
+		}
+		
+		return jsonObject;
 	}
 
 }

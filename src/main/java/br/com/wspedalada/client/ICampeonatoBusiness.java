@@ -10,5 +10,6 @@ public interface ICampeonatoBusiness {
 
 	public void incluiCampeonato(Campeonato campeonato);
 	public JsonObject getAllChampions();
+	public  JsonObject findByID(String codigo);
 
 }
