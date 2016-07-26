@@ -22,7 +22,7 @@ public class TimeFacade implements ITimeFacade {
 	public void createTeam(JsonObject jsonObject) {
 		try{
 			
-			this.iTimeBusiness.insertTeamToDB(jsonObject.toString());	
+			this.iTimeBusiness.insertTeamToDB(jsonObject);	
 			
 		}catch(PersistenceException e){
 			
