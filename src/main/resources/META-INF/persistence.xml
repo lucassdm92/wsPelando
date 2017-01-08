@@ -9,9 +9,10 @@
 
 			<property name="hibernate.transaction.jta.platform"
 				value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/PedaladaBR" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5433/PedaladaBR" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
-			<property name="hibernate.hbm2ddl.auto" value="validate" />
+			<!-- <property name="hibernate.hbm2ddl.auto" value="drop-and-create" /> USA APENAS QUANDO CRIAR TABELA NOVA -->
+			<property name="hibernate.hbm2ddl.auto" value="validate" /><!--  -->
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
 			<property name="javax.persistence.jdbc.user" value="postgres" />
 			<property name="javax.persistence.jdbc.password" value="admin" />

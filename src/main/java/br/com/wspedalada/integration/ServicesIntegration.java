@@ -3,6 +3,7 @@ package br.com.wspedalada.integration;
 import java.io.InputStream;
 
 import javax.ejb.EJB;
+import javax.json.Json;
 import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -34,7 +35,9 @@ public class ServicesIntegration {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public String insertChampions(InputStream incomingData) {
 
-		this.icampeonatoFacade.insertChampions(WSUtils.convertStreamToJSON(incomingData));
+		JsonObject json = WSUtils.convertStreamToJSON(incomingData);
+		System.out.println("JSON há ser enviado para o WS \n\n"+json);
+		this.icampeonatoFacade.insertChampions(json);
 
 		return "hahah MANE";
 	}

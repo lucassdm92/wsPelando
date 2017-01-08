@@ -25,9 +25,7 @@ public class CampeonatoBusiness implements ICampeonatoBusiness {
 
 	@Override
 	public void incluiCampeonato(Campeonato campeonato) {
-
 		entityManager.persist(campeonato);
-
 	}
 
 	@Override

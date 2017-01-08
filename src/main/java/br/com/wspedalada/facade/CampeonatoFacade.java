@@ -21,14 +21,10 @@ public class CampeonatoFacade implements ICampeonatoFacade {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public String insertChampions(JsonObject json) {
 		Campeonato campeonato = new Campeonato();
-
-		JsonObject campeonatoJson = json.getJsonObject("Campeonato");
-
-		campeonato.setNomeCampeonato(campeonatoJson.getString("Nome"));
-		campeonato.setDescricaoCampeonato(campeonatoJson.getString("Descricao"));
-		campeonato.setQtdTimesCampeonato(Short.valueOf(campeonatoJson.getString("QtdTime")));
-		campeonato.setQuantidadeTempo(Short.valueOf(campeonatoJson.getString("QtdTempo")));
-		campeonato.setValorTotalCampeonato(Double.parseDouble(campeonatoJson.getString("VlrCamp")));
+		campeonato.setNomeCampeonato(json.getJsonString("nomeCampeonato").toString());
+		campeonato.setDescricaoCampeonato(json.getJsonString("descricacaoCampeonato").toString());
+		campeonato.setQtdTimesCampeonato(Short.valueOf(json.getJsonString("qtdTime").toString()));
+		campeonato.setValorTotalCampeonato(Double.parseDouble(json.getJsonString("vlrCampeonato").toString()));
 
 		this.campeonatoBusiness.incluiCampeonato(campeonato);
 
